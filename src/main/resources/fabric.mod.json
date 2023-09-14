@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "spacebarcrafting",
+  "version": "${version}_${build}",
+  "name": "SpacebarCrafting",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/mattymatty/SpacebarCrafting"
+  },
+  "license": "MIT",
+  "icon": "assets/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "com.mattymatty.spacebarcrafting.SpaceBarCrafting"
+    ]
+  },
+  "mixins": [
+    "spacebarcrafting.mixins.json"
+  ],
+  "acceswidener":  "spacebarcrafting.accesswidener",
+  "depends": {
+    "minecraft": "${mc_version}"
+  }
+}

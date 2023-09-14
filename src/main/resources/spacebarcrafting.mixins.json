@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.mattymatty.spacebarcrafting.mixins",
+  "compatibilityLevel": "JAVA_16",
+  "client": [
+    "CraftingScreenMixin",
+    "InventoryScreenMixin",
+    "accessors.RecipeBookWidgetAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "CraftingResultInventoryMixin",
+    "RecipeUnlockerMixin",
+    "accessors.CraftingScreenHandlerAccessor",
+    "accessors.PlayerScreenHandlerAccessor"
+  ]
+}
