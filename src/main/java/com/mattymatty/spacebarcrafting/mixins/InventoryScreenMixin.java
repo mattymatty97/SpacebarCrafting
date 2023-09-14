@@ -56,10 +56,10 @@ public abstract class InventoryScreenMixin extends HandledScreen<PlayerScreenHan
     }
 
     @Override
-    public void onClose() {
+    public void close() {
         assert SpaceBarCrafting.client != null;
         assert SpaceBarCrafting.client.player != null;
         ((CraftingMemory)((PlayerScreenHandlerAccessor)this.handler).getCraftingResult()).spacebarCrafting$clearRecipeMemory();
-        super.onClose();
+        super.close();
     }
 }
