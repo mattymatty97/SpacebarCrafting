@@ -6,15 +6,10 @@
   "client": [
     "CraftingScreenMixin",
     "InventoryScreenMixin",
-    "accessors.RecipeBookWidgetAccessor"
+    "accessors.RecipeBookWidgetAccessor",
+    "RecipeUnlockerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-  },
-  "mixins": [
-    "CraftingResultInventoryMixin",
-    "RecipeUnlockerMixin",
-    "accessors.CraftingScreenHandlerAccessor",
-    "accessors.PlayerScreenHandlerAccessor"
-  ]
+  }
 }

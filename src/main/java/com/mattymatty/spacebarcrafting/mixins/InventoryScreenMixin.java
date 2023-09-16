@@ -1,8 +1,6 @@
 package com.mattymatty.spacebarcrafting.mixins;
 
 import com.mattymatty.spacebarcrafting.SpaceBarCrafting;
-import com.mattymatty.spacebarcrafting.interfaces.CraftingMemory;
-import com.mattymatty.spacebarcrafting.mixins.accessors.PlayerScreenHandlerAccessor;
 import com.mattymatty.spacebarcrafting.mixins.accessors.RecipeBookWidgetAccessor;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
@@ -19,10 +17,9 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(InventoryScreen.class)
-public abstract class InventoryScreenMixin extends HandledScreen<PlayerScreenHandler> {
+public abstract class InventoryScreenMixin extends HandledScreen<PlayerScreenHandler>{
 
     @Shadow @Final private RecipeBookWidget recipeBook;
-
     private InventoryScreenMixin(PlayerScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
     }
@@ -34,9 +31,9 @@ public abstract class InventoryScreenMixin extends HandledScreen<PlayerScreenHan
         assert SpaceBarCrafting.client.interactionManager != null;
         if (!SpaceBarCrafting.client.player.isSpectator()) {
 
-            Recipe<?> recipe = ((CraftingMemory)((PlayerScreenHandlerAccessor)this.handler).getCraftingResult()).spacebarCrafting$getRecipeMemory();
+            Recipe<?> recipe = SpaceBarCrafting.lastCraftedRecipe;
 
-            if (recipe != null && ((RecipeBookWidgetAccessor)this.recipeBook).getGhostSlots().getRecipe() != recipe) {
+            if (recipe != null) {
                 ((RecipeBookWidgetAccessor)this.recipeBook).getGhostSlots().reset();
                 SpaceBarCrafting.client.interactionManager.clickRecipe(SpaceBarCrafting.client.player.currentScreenHandler.syncId, recipe, Screen.hasShiftDown());
             }
@@ -57,9 +54,7 @@ public abstract class InventoryScreenMixin extends HandledScreen<PlayerScreenHan
 
     @Override
     public void close() {
-        assert SpaceBarCrafting.client != null;
-        assert SpaceBarCrafting.client.player != null;
-        ((CraftingMemory)((PlayerScreenHandlerAccessor)this.handler).getCraftingResult()).spacebarCrafting$clearRecipeMemory();
         super.close();
+        SpaceBarCrafting.lastCraftedRecipe = null;
     }
 }
