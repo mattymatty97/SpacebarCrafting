@@ -56,7 +56,7 @@ dependencies {
 def placeholders = [
         'version': project.version,
         'mc_version': project.minecraft_version,
-        'build': buildnumber
+        'build': 'build' + buildnumber
 ]
 
 processResources {
