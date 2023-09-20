@@ -18,6 +18,8 @@ public interface RecipeUnlockerMixin{
     @Shadow Recipe<?> getLastRecipe();
     @Inject(method = "unlockLastRecipe", at = @At("HEAD"))
     default void save_last_recipe(PlayerEntity player, List<ItemStack> ingredients, CallbackInfo ci){
-        SpaceBarCrafting.lastCraftedRecipe = getLastRecipe();
+        Recipe<?> recipe = getLastRecipe();
+        if (recipe!=null)
+            SpaceBarCrafting.lastCraftedRecipe = recipe;
     }
 }
